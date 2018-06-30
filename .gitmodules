@@ -1,3 +1,0 @@
-[submodule "ci-scripts"]
-	path = ci-scripts
-	url = https://github.com/flyingP0tat0/ci-scripts.git
