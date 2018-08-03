@@ -13,14 +13,13 @@ script:
 jobs:
   include:
     - stage: lint
-      sudo: required
-      services:
-        - docker
-      before_script:
-        - docker pull flyingp0tat0/rust-lint
+      rust: nightly
+      install:
+        - rustup component add clippy-preview
+        - rustup component add rustfmt-preview
       script:
-        - docker run -t -v $(pwd):/libvplan flyingp0tat0/rust-lint /bin/sh -c "cd /libvplan; cargo clippy -- --deny clippy"
-        - docker run -t -v $(pwd):/libvplan flyingp0tat0/rust-lint /bin/sh -c "cd /libvplan; cargo fmt --all -- --check"
+        - cargo clippy -- --deny clippy
+        - cargo fmt --all -- --check
 
     - stage: deploy docs
       rust: stable
