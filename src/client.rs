@@ -129,8 +129,7 @@ impl Client {
                 .and_then(|response| {
                     let (parts, body) = response.into_parts();
                     body.concat2().map(|body| (parts, body))
-                })
-                .from_err()
+                }).from_err()
                 .and_then(move |(_, body)| {
                     let body = String::from_utf8(body.to_vec());
 
