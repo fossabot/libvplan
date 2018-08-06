@@ -1,16 +1,8 @@
 use super::http;
 use super::hyper;
-use super::hyper_tls;
 use super::serde_xml_rs;
 use std::fmt;
 use std::string;
-
-#[derive(Debug)]
-/// An error occuring during client initialization
-pub enum StartupError {
-    /// Error during initializing TLS
-    TLSError(hyper_tls::Error)
-}
 
 #[derive(Debug)]
 /// An error during the retrieval of a vplan via the client
@@ -37,14 +29,6 @@ pub enum ParsingError {
     DocumentParsingError(serde_xml_rs::Error),
     // Error indicating a failure to parse dates from the XML
     DateParsingError(String)
-}
-
-impl fmt::Display for StartupError {
-    fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
-        match self {
-            StartupError::TLSError(error) => write!(formatter, "error initializing TLS: {}", error)
-        }
-    }
 }
 
 impl fmt::Display for RequestError {

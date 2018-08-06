@@ -9,7 +9,7 @@ extern crate chrono_tz;
 extern crate futures;
 extern crate http;
 extern crate hyper;
-extern crate hyper_tls;
+extern crate hyper_rustls;
 #[macro_use]
 extern crate nom;
 #[macro_use]

@@ -1,10 +1,10 @@
 use super::base64;
 use super::chrono::Weekday;
-use super::error::{RequestError, StartupError};
+use super::error::RequestError;
 use super::futures::{future, Future, Poll, Stream};
 use super::http;
 use super::hyper;
-use super::hyper_tls;
+use super::hyper_rustls;
 use super::parser;
 use super::vplan;
 use std::boxed::Box;
@@ -22,10 +22,7 @@ use std::boxed::Box;
 /// use futures::Future;
 /// use libvplan::Client;
 ///
-/// let client = match Client::new("username", "password") {
-///     Ok(client) => client,
-///     Err(error) => panic!("{}", error)
-/// };
+/// let client = Client::new("username", "password");
 ///
 /// let future = client
 ///                 .get_vplan(Weekday::Mon)
@@ -40,7 +37,7 @@ use std::boxed::Box;
 /// tokio::run(future);
 /// ```
 pub struct Client {
-    client: hyper::Client<hyper_tls::HttpsConnector<hyper::client::HttpConnector>>,
+    client: hyper::Client<hyper_rustls::HttpsConnector<hyper::client::HttpConnector>>,
     authorization: String
 }
 
@@ -66,23 +63,16 @@ impl Future for ResponseFuture {
 
 impl Client {
     /// Creates a new client
-    pub fn new(username: &str, password: &str) -> Result<Client, StartupError> {
-        let mut connector = match hyper_tls::HttpsConnector::new(1) {
-            Ok(connector) => connector,
-            Err(error) => {
-                return Err(StartupError::TLSError(error));
-            }
-        };
+    pub fn new(username: &str, password: &str) -> Client {
+        let connector = hyper_rustls::HttpsConnector::new(1);
 
-        connector.force_https(true);
-
-        Ok(Self {
+        Self {
             client: hyper::Client::builder().keep_alive(true).build(connector),
             authorization: format!(
                 "Basic {}",
                 base64::encode(format!("{}:{}", username, password).as_bytes())
             )
-        })
+        }
     }
 
     /// Retrieves the vplan for the given weekday
