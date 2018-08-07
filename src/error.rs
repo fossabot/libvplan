@@ -27,7 +27,7 @@ pub enum ParsingError {
     /// Error parsing actual XML
     /// This might indicate something on the original documents changed.
     DocumentParsingError(serde_xml_rs::Error),
-    // Error indicating a failure to parse dates from the XML
+    /// Error indicating a failure to parse dates from the XML
     DateParsingError(String)
 }
 
