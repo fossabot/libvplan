@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Client","A client to retrieve a vplan"],["ResponseFuture","A `Future` that will resolve to a vplan or an error during fetching it"]]});

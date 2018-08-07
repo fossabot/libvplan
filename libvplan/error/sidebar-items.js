@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["ParsingError","An error occuring during parsing"],["RequestError","An error during the retrieval of a vplan via the client"]]});
