@@ -63,7 +63,7 @@ impl Future for ResponseFuture {
 
 impl Client {
     /// Creates a new client
-    pub fn new<S: ToString>(username: S, password: S) -> Client {
+    pub fn new<S: ToString>(username: &S, password: &S) -> Client {
         let username = username.to_string();
         let password = password.to_string();
 
