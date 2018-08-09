@@ -16,10 +16,17 @@ extern crate nom;
 extern crate serde_derive;
 extern crate serde_xml_rs;
 
+/// The client to fetch a vplan
 pub mod client;
 mod document;
+/// Errors...
 pub mod error;
+/// Parser for dates.
 pub mod parser;
+/// A simple representation of a vplan, without `chrono` dates
+pub mod simple;
+/// vplan
 pub mod vplan;
 
 pub use client::Client;
+pub use vplan::*;
