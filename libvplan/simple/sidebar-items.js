@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["WeekType","A type specific to vplan"]],"struct":[["Change","A change to the timetable"],["Vplan","A plan of timetable changes"],["VplanDate","A date type specific to vplan"]]});

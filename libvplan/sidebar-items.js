@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["client","The client to fetch a vplan"],["error","Errors..."],["parser","Parser for dates."],["simple","A simple representation of a vplan, without `chrono` dates"],["vplan","vplan"]]});
+initSidebarItems({"mod":[["client","The client to fetch a vplan"],["error","Errors..."],["parser","Parser for dates."],["vplan","vplan"]]});
