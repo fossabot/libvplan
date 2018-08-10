@@ -1,6 +1,6 @@
 use super::chrono::{DateTime, Utc};
 
-#[derive(Clone, Eq, PartialEq, Debug)]
+#[derive(Clone, Eq, PartialEq, Serialize, Deserialize, Debug)]
 /// A plan of timetable changes
 pub struct Vplan {
     /// Vplan date
@@ -15,7 +15,7 @@ pub struct Vplan {
     pub info: Vec<String>
 }
 
-#[derive(Clone, Eq, PartialEq, Debug)]
+#[derive(Clone, Eq, PartialEq, Serialize, Deserialize, Debug)]
 /// A change to the timetable
 pub struct Change {
     /// Class which got the change
@@ -32,7 +32,7 @@ pub struct Change {
     pub info: String
 }
 
-#[derive(Clone, Eq, PartialEq, Debug)]
+#[derive(Clone, Eq, PartialEq, Serialize, Deserialize, Debug)]
 /// A date type specific to vplan
 pub struct VplanDate {
     pub date: DateTime<Utc>,
@@ -40,7 +40,7 @@ pub struct VplanDate {
     pub week_type: WeekType
 }
 
-#[derive(Clone, Eq, PartialEq, Debug)]
+#[derive(Clone, Eq, PartialEq, Serialize, Deserialize, Debug)]
 /// A type specific to vplan
 pub enum WeekType {
     A,
