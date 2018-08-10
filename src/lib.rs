@@ -23,8 +23,6 @@ mod document;
 pub mod error;
 /// Parser for dates.
 pub mod parser;
-/// A simple representation of a vplan, without `chrono` dates
-pub mod simple;
 /// vplan
 pub mod vplan;
 

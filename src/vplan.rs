@@ -1,5 +1,4 @@
 use super::chrono::{DateTime, Utc};
-use super::simple;
 
 #[derive(Clone, Eq, PartialEq, Debug)]
 /// A plan of timetable changes
@@ -46,43 +45,4 @@ pub struct VplanDate {
 pub enum WeekType {
     A,
     B
-}
-
-impl Vplan {
-    /// Turns a vplan into its simple representation
-    pub fn to_simple(&self) -> simple::Vplan {
-        let week_type = match self.date.week_type {
-            WeekType::A => simple::WeekType::A,
-            WeekType::B => simple::WeekType::B
-        };
-
-        let days_off = self
-            .days_off
-            .iter()
-            .map(|day| day.timestamp())
-            .collect::<Vec<i64>>();
-
-        let changes = self
-            .changes
-            .iter()
-            .map(|change| simple::Change {
-                class: change.class.clone(),
-                lesson: change.lesson.clone(),
-                subject: change.subject.clone(),
-                teacher: change.teacher.clone(),
-                room: change.room.clone(),
-                info: change.info.clone()
-            }).collect::<Vec<simple::Change>>();
-
-        simple::Vplan {
-            date: simple::VplanDate {
-                date: self.date.date.timestamp(),
-                week_type
-            },
-            changed: self.changed.timestamp(),
-            days_off,
-            changes,
-            info: self.info.clone()
-        }
-    }
 }
