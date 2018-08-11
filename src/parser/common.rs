@@ -55,17 +55,6 @@ pub fn to_date(
     date.with_timezone(&Utc)
 }
 
-pub fn to_weekday(input: &str) -> Result<Weekday, ParsingError> {
-    match input {
-        "Montag" => Ok(Weekday::Mon),
-        "Dienstag" => Ok(Weekday::Tue),
-        "Mittwoch" => Ok(Weekday::Wed),
-        "Donnerstag" => Ok(Weekday::Thu),
-        "Freitag" => Ok(Weekday::Fri),
-        _ => Err(ParsingError::DateParsingError("invalid weekday".to_owned()))
-    }
-}
-
 pub fn to_month(input: &str) -> Result<u32, ParsingError> {
     match input {
         "Januar" => Ok(1),
