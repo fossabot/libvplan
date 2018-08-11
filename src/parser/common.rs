@@ -17,7 +17,7 @@ pub fn to_u32(input: &str) -> Result<u32, ParseIntError> {
 }
 
 named!(pub i32<&str, i32>,
-    map_res!(take!(2), to_i32)
+    map_res!(take!(4), to_i32)
 );
 
 named!(pub i32_padded<&str, i32>,
