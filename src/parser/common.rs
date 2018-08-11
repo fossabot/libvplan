@@ -1,4 +1,4 @@
-use super::super::chrono::{DateTime, TimeZone, Utc, Weekday};
+use super::super::chrono::{DateTime, TimeZone, Utc};
 use super::super::chrono_tz::Europe::Berlin;
 use super::super::error::ParsingError;
 use super::super::vplan::WeekType;
