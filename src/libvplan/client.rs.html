@@ -136,7 +136,6 @@
 <span id="136">136</span>
 <span id="137">137</span>
 <span id="138">138</span>
-<span id="139">139</span>
 </pre><pre class="rust ">
 <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">base64</span>;
 <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">chrono</span>::<span class="ident">Weekday</span>;
@@ -159,22 +158,21 @@
 <span class="doccomment">/// extern crate tokio;</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// use chrono::Weekday;</span>
-<span class="doccomment">/// use futures::Future;</span>
 <span class="doccomment">/// use libvplan::Client;</span>
+<span class="doccomment">/// use tokio::runtime::Runtime;</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// let client = Client::new(&quot;username&quot;, &quot;password&quot;);</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// let future = client</span>
-<span class="doccomment">///                 .get_vplan(Weekday::Mon)</span>
-<span class="doccomment">///                 .and_then(|vplan| {</span>
-<span class="doccomment">///                     println!(&quot;{:#?}&quot;, vplan);</span>
-<span class="doccomment">///                     Ok(())</span>
-<span class="doccomment">///                 })</span>
-<span class="doccomment">///                 .map_err(|error| {</span>
-<span class="doccomment">///                     panic!(&quot;{}&quot;, error);</span>
-<span class="doccomment">///                 });</span>
+<span class="doccomment">/// let future = client.get_vplan(Weekday::Mon);</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// tokio::run(future);</span>
+<span class="doccomment">/// let mut rt = match Runtime::new() {</span>
+<span class="doccomment">///     Ok(rt) =&gt; rt,</span>
+<span class="doccomment">///     Err(error) =&gt; panic!(error)</span>
+<span class="doccomment">/// };</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// let result = rt.block_on(future);</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// println!(&quot;{:#?}&quot;, result);</span>
 <span class="doccomment">/// ```</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Client</span> {
     <span class="ident">client</span>: <span class="ident">hyper</span>::<span class="ident">Client</span><span class="op">&lt;</span><span class="ident">hyper_tls</span>::<span class="ident">HttpsConnector</span><span class="op">&lt;</span><span class="ident">hyper</span>::<span class="ident">client</span>::<span class="ident">HttpConnector</span><span class="op">&gt;&gt;</span>,
