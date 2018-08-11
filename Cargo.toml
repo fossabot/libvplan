@@ -5,6 +5,9 @@ authors = ["Jan Baudisch (flyingP0tat0) <dev@baudisch.xyz>"]
 license = "GPL-3.0"
 description = "An internally used library for utilizing a special case of document parsing."
 
+[features]
+vendored = ["native-tls/vendored"]
+
 [dependencies]
 base64 = "0.9"
 chrono-tz = "0.4"
@@ -12,7 +15,7 @@ futures = "0.1"
 http = "0.1"
 hyper = "0.12"
 hyper-tls = "0.3"
-native-tls = { version = "0.2", features = ["vendored"] }
+native-tls = "0.2"
 nom = "4.0"
 serde = "1.0"
 serde_derive = "1.0"
