@@ -1,18 +1,18 @@
 extern crate chrono;
 extern crate futures;
-extern crate hyper;
 extern crate libvplan;
 #[macro_use]
 extern crate log;
 extern crate pretty_env_logger;
 #[macro_use]
 extern crate structopt;
+extern crate tokio;
 
 use chrono::{Datelike, Weekday};
-use futures::Future;
 use libvplan::{Client, WeekType};
 use std::process;
 use structopt::StructOpt;
+use tokio::runtime::Runtime;
 
 macro_rules! errorexit {
     ($($error:tt)*) => {{
@@ -52,9 +52,15 @@ fn main() {
 
     let client = Client::new(cli.username.as_ref(), cli.password.as_ref());
 
-    let future = client
-        .get_vplan(weekday)
-        .map(|vplan| {
+    let future = client.get_vplan(weekday);
+
+    let mut rt = match Runtime::new() {
+        Ok(rt) => rt,
+        Err(error) => errorexit!("{}", error)
+    };
+
+    match rt.block_on(future) {
+        Ok(vplan) => {
             let date = vplan.date.date;
 
             let week_type = match vplan.date.week_type {
@@ -85,11 +91,7 @@ fn main() {
             for info in vplan.info {
                 println!("{}\n", info);
             }
-
-            process::exit(0);
-        }).map_err(|error| {
-            errorexit!("{}", error);
-        });
-
-    hyper::rt::run(future);
+        },
+        Err(error) => errorexit!("{}", error)
+    }
 }

@@ -12,29 +12,28 @@ use std::boxed::Box;
 /// A client to retrieve a vplan
 ///
 /// # Example
-/// ```rust,ignore
+/// ```rust
 /// extern crate chrono;
 /// extern crate futures;
 /// extern crate libvplan;
 /// extern crate tokio;
 ///
 /// use chrono::Weekday;
-/// use futures::Future;
 /// use libvplan::Client;
+/// use tokio::runtime::Runtime;
 ///
 /// let client = Client::new("username", "password");
 ///
-/// let future = client
-///                 .get_vplan(Weekday::Mon)
-///                 .and_then(|vplan| {
-///                     println!("{:#?}", vplan);
-///                     Ok(())
-///                 })
-///                 .map_err(|error| {
-///                     panic!("{}", error);
-///                 });
+/// let future = client.get_vplan(Weekday::Mon);
 ///
-/// tokio::run(future);
+/// let mut rt = match Runtime::new() {
+///     Ok(rt) => rt,
+///     Err(error) => panic!(error)
+/// };
+///
+/// let result = rt.block_on(future);
+///
+/// println!("{:#?}", result);
 /// ```
 pub struct Client {
     client: hyper::Client<hyper_tls::HttpsConnector<hyper::client::HttpConnector>>,
