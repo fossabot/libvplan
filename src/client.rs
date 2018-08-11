@@ -12,7 +12,7 @@ use std::boxed::Box;
 /// A client to retrieve a vplan
 ///
 /// # Example
-/// ```rust
+/// ```rust,ignore
 /// extern crate chrono;
 /// extern crate futures;
 /// extern crate libvplan;
