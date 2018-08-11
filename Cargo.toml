@@ -11,7 +11,7 @@ chrono-tz = "0.4"
 futures = "0.1"
 http = "0.1"
 hyper = "0.12"
-hyper-rustls = "0.14"
+hyper-tls = "0.3"
 nom = "4.0"
 serde = "1.0"
 serde_derive = "1.0"
@@ -20,3 +20,9 @@ serde-xml-rs = { git = "https://github.com/RReverser/serde-xml-rs.git", rev = "5
 [dependencies.chrono]
 version = "0.4"
 features = ["serde"]
+
+[dev-dependencies]
+log = "0.4"
+pretty_env_logger = "0.2"
+structopt = "0.2"
+tokio = "0.1"

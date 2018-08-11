@@ -4,7 +4,7 @@ use super::error::RequestError;
 use super::futures::{future, Future, Poll, Stream};
 use super::http;
 use super::hyper;
-use super::hyper_rustls;
+use super::hyper_tls;
 use super::parser;
 use super::vplan;
 use std::boxed::Box;
@@ -37,7 +37,7 @@ use std::boxed::Box;
 /// tokio::run(future);
 /// ```
 pub struct Client {
-    client: hyper::Client<hyper_rustls::HttpsConnector<hyper::client::HttpConnector>>,
+    client: hyper::Client<hyper_tls::HttpsConnector<hyper::client::HttpConnector>>,
     authorization: String
 }
 
@@ -64,7 +64,7 @@ impl Future for ResponseFuture {
 impl Client {
     /// Creates a new client
     pub fn new(username: &str, password: &str) -> Client {
-        let connector = hyper_rustls::HttpsConnector::new(1);
+        let connector = hyper_tls::HttpsConnector::new(4).unwrap();
 
         Self {
             client: hyper::Client::builder().keep_alive(true).build(connector),
