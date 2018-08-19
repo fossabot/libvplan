@@ -74,6 +74,16 @@ impl Client {
         }
     }
 
+    /// Creates a new client via a preformatted HTTP basic authorization string (base64 "username:password")
+    pub fn from_auth(authorization: &str) -> Client {
+        let connector = hyper_tls::HttpsConnector::new(4).unwrap();
+
+        Self {
+            client: hyper::Client::builder().keep_alive(true).build(connector),
+            authorization: authorization.to_owned()
+        }
+    }
+
     /// Retrieves the vplan for the given weekday
     pub fn get_vplan(&self, day: Weekday) -> ResponseFuture {
         let day = match day {
