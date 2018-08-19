@@ -85,7 +85,7 @@ impl Client {
     }
 
     /// Retrieves the vplan for the given weekday
-    pub fn get_vplan(&self, day: Weekday) -> ResponseFuture {
+    pub fn get(&self, day: Weekday) -> ResponseFuture {
         let day = match day {
             Weekday::Mon => Some("Mo"),
             Weekday::Tue => Some("Di"),
