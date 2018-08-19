@@ -51,7 +51,7 @@ fn main() {
 
     let client = Client::new(cli.username.as_ref(), cli.password.as_ref());
 
-    let future = client.get_vplan(weekday);
+    let future = client.get(weekday);
 
     let mut rt = match Runtime::new() {
         Ok(rt) => rt,
