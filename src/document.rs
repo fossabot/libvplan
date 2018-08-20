@@ -33,11 +33,11 @@ pub struct Header {
 #[derive(Debug, Deserialize)]
 pub struct HeaderInfo {
     #[serde(rename = "abwesendk")]
-    pub naclasses: Value,
+    pub naclasses: Option<Value>,
     #[serde(rename = "abwesendr")]
-    pub narooms: Value,
+    pub narooms: Option<Value>,
     #[serde(rename = "aenderungk")]
-    pub changed: Value
+    pub changed: Option<Value>
 }
 
 #[derive(Debug, Deserialize)]
