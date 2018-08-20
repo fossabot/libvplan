@@ -130,11 +130,11 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">HeaderInfo</span> {
     <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename</span> <span class="op">=</span> <span class="string">&quot;abwesendk&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="ident">naclasses</span>: <span class="ident">Value</span>,
+    <span class="kw">pub</span> <span class="ident">naclasses</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Value</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename</span> <span class="op">=</span> <span class="string">&quot;abwesendr&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="ident">narooms</span>: <span class="ident">Value</span>,
+    <span class="kw">pub</span> <span class="ident">narooms</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Value</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename</span> <span class="op">=</span> <span class="string">&quot;aenderungk&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="ident">changed</span>: <span class="ident">Value</span>
+    <span class="kw">pub</span> <span class="ident">changed</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Value</span><span class="op">&gt;</span>
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Deserialize</span>)]</span>
